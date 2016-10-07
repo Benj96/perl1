@@ -24,9 +24,48 @@ require "$FindBin::Bin/../lib/tokenize.pl";
 sub rpn {
 	my $expr = shift;
 	my $source = tokenize($expr);
-	my @rpn;
+	
 
 	# ...
+my @rpn;
+while (1) {
+ 
+    print '$ ';
+    my $expr = <STDIN>;
+    chomp $expr;
+ 
+    given ($expr) {
+        when ("q") { last; }
+        when ("c") { 
+            pop @rpn; 
+            }   
+        when ("*") { 
+            my $x = pop(@rpn);
+            my $y = pop(@rpn);
+            push(@rpn, $x*$y);
+            }
+        when ("+") { 
+            my $x = pop(@rpn);
+            my $y = pop(@rpn);
+            push(@rpn, $x + $y);
+            }
+        when ("/") {
+            my $x = pop(@rpn);
+            my $y = pop(@rpn);
+            push(@rpn, $y /  $x); 
+            }
+        when ("-") { 
+            my $x = pop(@rpn);
+            my $y = pop(@rpn);
+            push(@rpn, $y - $x);
+            }
+        when ("=") { 
+            print pop(@rpn); 
+            }
+        default { push @rpn, $expr; }
+    }
+}
+
 
 	return \@rpn;
 }

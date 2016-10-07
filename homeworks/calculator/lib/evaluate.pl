@@ -21,7 +21,21 @@ sub evaluate {
 	my $rpn = shift;
 
 	# ...
+&arrayref =\@array;
 
+   
+   my ($expr) = @_;
+   my @tokens = split /\s+/, $expr;
+   for my $token (@tokens) {
+      if ($token =~ /\d+$/) {
+         push \@array, $token;
+      } else {
+         if (my $fn = $rpn->{$token}) {
+            $fn->(\@array);
+         } else {
+            die "Unrecognized token '$token'; aborting";
+         }
+print pop(\@array);
 	return 0;
 }
 

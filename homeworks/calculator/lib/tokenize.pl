@@ -26,12 +26,25 @@ BEGIN{
 no warnings 'experimental';
 
 sub tokenize {
-	chomp(my $expr = shift);
+	
 	my @res;
 
 	# ...
 
-	return \@res;
+while(my $expr = <STDIN>) {
+  chomp($expr); # отсекаем символ \n
+  last if($expr eq "exit");
+  print "Вы ввели '$expr'. Для выхода из цикла введите exit\n";
+}
+my $number=qr/\d+/; # шаблон для числа/переменной
+ 
+$arifm=qr#[+-]?(?:$number|\((??{$arifm})\))(?:[*/](?:$number|\((??{$arifm})\)))*
+   (?:[+-](?:$number|\((??{$arifm})\))(?:[*/](?:$number|\((??{$arifm})\)))*)*#x;
+ 
+print /^$arifm$/ ? "Верно: $_\n" : "Неверно: $_\n" for ($expr);
+my @res=split // $expr;  
+
+return \@res;
 }
 
 1;
