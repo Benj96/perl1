@@ -1,0 +1,62 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+package Local::Reducer;
+sub new ()
+{
+ $myReducer= source;
+}
+sub reduce_all()
+{
+
+}
+sub reduced ()
+{
+
+}
+1;
+package Local::Reducer::Sum;
+package Local::Reducer::MaxDiff;
+use parent qw(Sum,MaxDiff);
+package Local::Source;
+ sub next
+{
+ 
+}
+1;
+
+package Local::Source::Array;
+sub new (@array)
+{}
+1;
+
+package Local::Source::Text;
+sub new ()
+{
+
+}
+1;
+
+
+my $source = Local::Reducer::Sum->new(
+    field => 'price',
+    source => Local::Source::Array->new(array => [
+        '{"price": 1}',
+        '{"price": 2}',
+        '{"price": 3}',
+    ]),
+    row_class => 'Local::Row::JSON',
+    initial_value => 0,
+);
+
+
+my $reducer = Local::Reducer::MaxDiff->new(
+    top => 'received',
+    bottom => 'sended',
+    source => Local::Source::Text->new(text =>"sended:1024,received:2048\nsended:2048,received:10240"),
+    row_class => 'Local::Row::Simple',
+    initial_value => 0,
+);
+
+

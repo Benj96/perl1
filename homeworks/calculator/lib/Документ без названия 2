@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+
+use strict;
+use utf8;
+use MyClass;
+use Data::Dumper;
+print "Content-Type: text/html; charset=utf-8\n\n";
+
+my $self = MyClass->new();
+
+print Data::Dumper::Dumper( $self );
+

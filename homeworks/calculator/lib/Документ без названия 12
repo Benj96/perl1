@@ -1,0 +1,12 @@
+
+use Local::JSONParser;
+use DDP;
+use Exporter 'import';
+our @EXPORT_OK=qw(parse_json);
+sub parse_json
+{
+
+}
+my $data = '{ "key" : "value", "array": [1,2,3]}';
+my $struct = parse_json($data);
+p $struct;

@@ -1,0 +1,11 @@
+c#!/usr/bin/perl
+use strict;
+use warnings;
+my $dirname = "/usr/local/bin";
+opendir(DIR,$dirname) or die "can't opendir $dirname: $!";
+while (defined(my $file = readdir(DIR))) {
+print "$file ; \n"; } closedir(DIR);
+
+
+
+

@@ -1,0 +1,23 @@
+use strict; use warnings;
+my $row=<STDIN>; 
+my $len=<STDIN>; 
+my $num=<STDIN>;
+@arr=([$row],[$len]);
+
+ for ($i;$i!=$num;++$i)
+{
+ $random = int (rand(0)+ $row;
+$random1 = int (rand(0)+ $len;
+ $arr[$random][random1]='x';
+}
+
+
+for ($i;$i<$row;++$i)
+{
+for ($j;$j<$len;++$j)
+{ 
+ 
+}
+}
+        
+
